@@ -9,6 +9,7 @@
 <html lang="en">
 <head>
     <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
+     
     
     <!-- TODO: Add the responsive 'viewport' meta tag.
          The 'name' should be 'viewport' and the 'content' should set the 'width' to 'device-width'
@@ -20,6 +21,11 @@
 
     <!-- TODO: Link this script file:
          <script src="admin.js" defer></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Resources</title>
+    <link rel="stylesheet" href="../common/styles.css">
+    <script src="admin.js" defer></script>
 </head>
 <body>
 
@@ -86,5 +92,47 @@
         <!-- End of resources list section. -->
 
     <!-- End of main. -->
+    <header>
+        <h1>Manage Course Resources</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Add a New Resource</h2>
+            <form id="resource-form" action="#">
+                <fieldset>
+                    <legend>Resource Details</legend>
+
+                    <label for="resource-title">Title</label>
+                    <input id="resource-title" type="text" required>
+
+                    <label for="resource-description">Description</label>
+                    <textarea id="resource-description" rows="4"></textarea>
+                    
+                    <label for="resource-link">Link</label>
+                    <input id="resource-link" type="url" required>
+
+                    <button id="add-resource" type="submit">Add Resource</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <h2>Existing Resources</h2>
+            <table id="resources-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Link</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="resources-tbody">
+                    <!-- Dynamic rows will be injected by admin.js -->
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>
