@@ -15,42 +15,42 @@ function createAssignmentArticle(assignment) {
 }
 
 async function loadAssignments() {
-    const search = searchInput.value.trim();
-    const sort   = sortSelect.value;
-    const order  = orderSelect.value;
+    const search = searchInput ? searchInput.value.trim() : '';
+    const sort   = sortSelect  ? sortSelect.value  : 'due_date';
+    const order  = orderSelect ? orderSelect.value : 'asc';
 
     const params = new URLSearchParams({ sort, order });
     if (search) params.append("search", search);
 
-    listSection.innerHTML = "<p>Loading assignments...</p>";
+    if (listSection) listSection.innerHTML = "<p>Loading assignments...</p>";
 
     try {
         const response = await fetch(`./api/index.php?${params}`);
         const result   = await response.json();
 
         if (!result.success) {
-            listSection.innerHTML = "<p>Failed to load assignments.</p>";
+            if (listSection) listSection.innerHTML = "<p>Failed to load assignments.</p>";
             return;
         }
 
         if (result.data.length === 0) {
-            listSection.innerHTML = "<p>No assignments found.</p>";
+            if (listSection) listSection.innerHTML = "<p>No assignments found.</p>";
             return;
         }
 
-        listSection.innerHTML = "";
+        if (listSection) listSection.innerHTML = "";
         result.data.forEach(assignment => {
-            listSection.appendChild(createAssignmentArticle(assignment));
+            if (listSection) listSection.appendChild(createAssignmentArticle(assignment));
         });
 
     } catch (error) {
         console.error(error);
-        listSection.innerHTML = "<p>Error loading assignments.</p>";
+        if (listSection) listSection.innerHTML = "<p>Error loading assignments.</p>";
     }
 }
 
 loadAssignments();
 
-searchInput.addEventListener("input", loadAssignments);
-sortSelect.addEventListener("change", loadAssignments);
-orderSelect.addEventListener("change", loadAssignments);
+if (searchInput) searchInput.addEventListener("input", loadAssignments);
+if (sortSelect)  sortSelect.addEventListener("change", loadAssignments);
+if (orderSelect) orderSelect.addEventListener("change", loadAssignments);
