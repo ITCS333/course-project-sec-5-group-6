@@ -62,12 +62,12 @@ function createResourceRow(resource) {
   return tr;
 }
 
-// ✅ JS-23: نقرأ العنصر داخل الفنكشن مباشرة بدل الـ top-level variable
-function renderTable() {
+function renderTable(data) {
   const tbody = document.querySelector('#resources-tbody');
   if (!tbody) return;
   tbody.innerHTML = '';
-  for (const res of resources) {
+  const list = data ?? resources;
+  for (const res of list) {
     tbody.appendChild(createResourceRow(res));
   }
 }
@@ -126,7 +126,6 @@ function handleAddResource(event) {
   }
 }
 
-// ✅ JS-26 & JS-27: حذفنا instanceof HTMLElement لأنها تكسر Jest
 function handleTableClick(event) {
   const target = event.target;
   if (!target) return;
@@ -139,7 +138,9 @@ function handleTableClick(event) {
       .then(r => r.json())
       .then(json => {
         if (json && json.success) {
-          resources = resources.filter(r => String(r.id) !== String(id));
+          const filtered = resources.filter(r => String(r.id) !== String(id));
+          resources.length = 0;
+          filtered.forEach(item => resources.push(item));
           renderTable();
 
           if (currentEditId !== null && String(currentEditId) === String(id)) {
@@ -180,13 +181,14 @@ async function loadAndInitialize() {
     const resp = await fetch('./api/index.php');
     const json = await resp.json();
     if (json && json.success && Array.isArray(json.data)) {
-      resources = json.data;
+      resources.length = 0;
+      json.data.forEach(item => resources.push(item));
     } else {
-      resources = [];
+      resources.length = 0;
     }
   } catch (err) {
     console.error('Load error:', err);
-    resources = [];
+    resources.length = 0;
   }
 
   renderTable();
@@ -211,7 +213,7 @@ if (typeof module !== 'undefined' && module.exports) {
     handleTableClick,
     loadAndInitialize,
     getResources: () => resources,
-    setResources: (data) => {           // ✅ التصحيح هنا
+    setResources: (data) => {
       resources.length = 0;
       data.forEach(item => resources.push(item));
     },
