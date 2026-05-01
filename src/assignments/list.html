@@ -1,52 +1,100 @@
-<!--
-  Requirement: Create the Student View for Assignments
-
-  Instructions:
-  This page is a read-only view for students to see all course assignments.
-  Each assignment should link to its dedicated detail page.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add <meta> tags for charset (UTF-8) and viewport
-         (width=device-width, initial-scale=1.0). -->
-
-    <!-- TODO: Add a <title>, e.g., "Course Assignments". -->
-
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
-
-    <!-- Required: link list.js with defer so the DOM is ready before the
-         script runs. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Assignments</title>
+    <link rel="stylesheet" href="../../assets/styles.css">
     <script src="list.js" defer></script>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f9f9f9;
+            color: #222;
+        }
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 1rem;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .controls input,
+        .controls select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+        .controls input {
+            flex: 1;
+            min-width: 200px;
+        }
+        #assignment-list-section article {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #assignment-list-section article h2 {
+            margin: 0 0 0.25rem;
+            font-size: 1.25rem;
+        }
+        #assignment-list-section article p {
+            margin: 0.25rem 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        #assignment-list-section article a {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: #005fcc;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        #assignment-list-section article a:hover {
+            text-decoration: underline;
+        }
+        #loading-message {
+            color: #555;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Course Assignments</h1>
+    </header>
 
-    <!-- TODO: Create a <header> containing an <h1> "Course Assignments". -->
+    <main>
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Search assignments...">
+            <select id="sort-select">
+                <option value="due_date">Sort by Due Date</option>
+                <option value="title">Sort by Title</option>
+                <option value="created_at">Sort by Created</option>
+            </select>
+            <select id="order-select">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </div>
 
-    <!-- TODO: Create the <main> content area. -->
-
-        <!-- TODO: Create a <section id="assignment-list-section"> to contain
-             the list of assignment articles.
-             The id is required by list.js. -->
-
-            <!-- list.js will inject one <article> per assignment here.
-                 Each article follows the structure below. -->
-
-            <!-- Example Assignment Article Structure (do NOT hardcode real
-                 data; list.js fetches it from the API):
-
-            <article>
-                <h2>HTML &amp; CSS Portfolio</h2>
-                <p>Due: 2025-02-15</p>
-                <p>Create a responsive portfolio website...</p>
-                <a href="details.html?id=1">View Details &amp; Discussion</a>
-            </article>
-
-            Note: the href MUST be "details.html?id=<id>" so that
-            details.js can read the id from the URL query string. -->
-
-        <!-- End of #assignment-list-section -->
-    <!-- End of <main> -->
-
+        <section id="assignment-list-section">
+            <p id="loading-message">Loading assignments...</p>
+        </section>
+    </main>
 </body>
 </html>
