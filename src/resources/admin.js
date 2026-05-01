@@ -211,7 +211,10 @@ if (typeof module !== 'undefined' && module.exports) {
     handleTableClick,
     loadAndInitialize,
     getResources: () => resources,
-    setResources: (data) => { resources = data; },
+    setResources: (data) => {           // ✅ التصحيح هنا
+      resources.length = 0;
+      data.forEach(item => resources.push(item));
+    },
     getCurrentEditId: () => currentEditId,
     setCurrentEditId: (id) => { currentEditId = id; },
   };
