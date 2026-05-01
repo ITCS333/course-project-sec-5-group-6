@@ -13,7 +13,8 @@
 
 // --- Element Selections ---
 // TODO: Select the section for the resource list ('#resource-list-section').
-const listSection = document.querySelector('#resource-list-section');
+const resourceListSection = document.querySelector('#resource-list-section');
+
 
 // --- Functions ---
 
@@ -27,19 +28,19 @@ const listSection = document.querySelector('#resource-list-section');
 function createResourceArticle(resource) {
   const article = document.createElement('article');
 
-  const h3 = document.createElement('h3');
-  h3.textContent = resource.title ?? '';
+  const heading = document.createElement('h2');
+  heading.textContent = resource.title ?? '';
 
-  const p = document.createElement('p');
-  p.textContent = resource.description ?? '';
+  const description = document.createElement('p');
+  description.textContent = resource.description ?? '';
 
-  const a = document.createElement('a');
-  a.href = `details.html?id=${encodeURIComponent(resource.id)}`;
-  a.textContent = 'View Resource & Discussion';
+  const link = document.createElement('a');
+  link.href = `details.html?id=${resource.id}`;
+  link.textContent = 'View Resource & Discussion';
 
-  article.appendChild(h3);
-  article.appendChild(p);
-  article.appendChild(a);
+  article.appendChild(heading);
+  article.appendChild(description);
+  article.appendChild(link);
 
   return article;
 }
@@ -60,21 +61,21 @@ async function loadResources() {
   try {
     const resp = await fetch('./api/index.php');
     const json = await resp.json();
-    const data = (json && json.success && Array.isArray(json.data)) ? json.data : [];
 
-    if (listSection) {
-      listSection.innerHTML = '';
-      for (const res of data) {
-        listSection.appendChild(createResourceArticle(res));
+    if (!resourceListSection) return;
+    resourceListSection.innerHTML = '';
+
+    if (json && json.success && Array.isArray(json.data)) {
+      for (const resource of json.data) {
+        resourceListSection.appendChild(createResourceArticle(resource));
       }
     }
   } catch {
-    if (listSection) {
-      listSection.innerHTML = '';
-    }
+    // silently fail
   }
 }
 
 // --- Initial Page Load ---
 // Call the function to populate the page.
 loadResources();
+
