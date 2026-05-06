@@ -3,10 +3,10 @@
 
   Instructions:
   1. This file is already linked to your HTML via a <script> tag with the 'defer' attribute
-     at the bottom of the <body> in login.html.
+     at the bottom of the </body> in login.html.
   
   2. In your login.html, a <div id="message-container"> has been added *after* the </fieldset>
-     but *before* the </form> closing tag. This div will be used to display success or error messages.
+     but before the </form> closing tag. This div will be used to display success or error messages.
   
   3. Implement the JavaScript functionality as described in the TODO comments.
 */
@@ -15,6 +15,19 @@
 // We can safely select elements here because 'defer' guarantees
 // the HTML document is parsed before this script runs.
 
+<<<<<<< HEAD
+// TODO: Select the login form by its id "login-form".
+const loginForm = document.querySelector("#login-form");
+
+// TODO: Select the email input element by its ID.
+const emailInput = document.querySelector("#email");
+
+// TODO: Select the password input element by its ID.
+const passwordInput = document.querySelector("#password");
+
+// TODO: Select the message container element by its ID.
+const messageContainer = document.querySelector("#message-container");
+=======
 const loginForm = document.getElementById("login-form");
 
 const emailInput = document.getElementById("email");
@@ -22,6 +35,7 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
 const messageContainer = document.getElementById("message-container");
+>>>>>>> 36ebca17ba3264a2d45c8c4654e59bacbf80eb27
 
 // --- Functions ---
 
@@ -55,9 +69,13 @@ function displayMessage(message, type) {
  * A simple regex for this purpose is: /\S+@\S+\.\S+/
  */
 function isValidEmail(email) {
+<<<<<<< HEAD
+  return /\S+@\S+\.\S+/.test(email);
+=======
 const regex = /\S+@\S+\.\S+/;
   return regex.test(email);
 
+>>>>>>> 36ebca17ba3264a2d45c8c4654e59bacbf80eb27
 }
 
 /**
@@ -89,7 +107,28 @@ function isValidPassword(password) {
  * - (Optional) Clear the email and password input fields.
  */
 function handleLogin(event) {
+<<<<<<< HEAD
+  event.preventDefault();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!isValidEmail(email)) {
+    displayMessage("Invalid email format.", "error");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    displayMessage("Password must be at least 8 characters.", "error");
+    return;
+  }
+
+  displayMessage("Login successful!", "success");
+  emailInput.value = "";
+  passwordInput.value = "";
+}
+=======
 event.preventDefault();
+>>>>>>> 36ebca17ba3264a2d45c8c4654e59bacbf80eb27
 
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
