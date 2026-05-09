@@ -7,71 +7,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
+    <meta charset="UTF-8">
     
-    <!-- TODO: Add the responsive 'viewport' meta tag. -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
 
-    <!-- TODO: Add a title, e.g., "Discussion Board". -->
+     <title>Discussion Board</title>
+ 
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+    <link rel="stylesheet" href="../styles.css">
+    
 </head>
 <body>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') "General Discussion Board". -->
+   <header>
+        <h1>General Discussion Board</h1>
+    </header>
+    
 
-    <!-- TODO: Create the 'main' content area. -->
+   <main>
+  
 
         <!-- Section 1: Create a New Topic -->
-        <!-- TODO: Create a 'section' for the "new topic" form. -->
-            <!-- TODO: Add a sub-heading ('h2') "Start a New Topic". -->
+        <section>
+     
+             <h2>Start a New Topic</h2>
+        
+                 <form id="new-topic-form" action="#">
+       
+                <fieldset>
+             
+                      <legend>New Topic Details</legend>
+                 
 
-            <!-- TODO: Create a 'form' with an id "new-topic-form". Action can be '#'. -->
-                <!-- TODO: Use a 'fieldset' to group the form controls. -->
-                    <!-- TODO: Add a 'legend', e.g., "New Topic Details". -->
-
-                    <!-- TODO: Add a 'label' and 'input' for the topic subject.
-                         - label 'for': "topic-subject"
-                         - input 'id': "topic-subject", type="text", required -->
-
-                    <!-- TODO: Add a 'label' and 'textarea' for the main message.
-                         - label 'for': "topic-message"
-                         - textarea 'id': "topic-message", rows="6", required -->
-
-                    <!-- TODO: Add a 'button' to submit the form.
-                         - id="create-topic", type="submit", Text: "Create Topic" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of form section. -->
-
+                    <label for="topic-subject">Topic Subject</label>
+                    <input id="topic-subject" type="text" required>
+                   
+                   <label for="topic-message">Message</label>
+                    <textarea id="topic-message" rows="6" required></textarea>
+                   
+                   <button id="create-topic" type="submit">Create Topic</button>
+                   
+                </fieldset>
+                
+             </form>
+           
+        </section>
+        
 
         <!-- Section 2: Existing Topics -->
-        <!-- TODO: Create a 'section' to display the list of current topics. -->
-            <!-- TODO: Add a sub-heading ('h2') "All Topics". -->
+         <section>
+      
+            <h2>All Topics</h2>
+     
             
-            <!-- TODO: Add a container (like a 'div') to hold the list of topics. -->
-                <!-- TODO: Add 2-3 dummy topics using the structure below. -->
+           <div>
+        
+                
 
                 <!-- Example Topic 1: -->
-                <!-- TODO: Use an 'article' for each topic. -->
-                    <!-- TODO: Add a heading ('h3') containing an anchor tag ('a') linking to the detail page.
-                         - The link's 'href' can be "topic-detail.html" for now.
-                         - The link text should be a dummy topic title, e.g., "Question about CSS Flexbox". -->
+                 <article>
+             
+                    <h3><a href="topic-detail.html">Question about CSS Flexbox</a></h3>
+                   
                     
-                    <!-- TODO: Use a 'footer' element for metadata. -->
-                        <!-- TODO: Add text like "Posted by: Student Name on YYYY-MM-DD". -->
-                    <!-- End of footer. -->
+                   <footer>
+                   
+                        Posted by: Student One on 2026-05-08
+                      
+                     </footer>
+                   
 
-                    <!-- TODO: Add a container (e.g., a 'div') for action buttons. -->
-                        <!-- TODO: Add an "Edit" button/link. -->
-                        <!-- TODO: Add a "Delete" button/link. -->
+                    <div>
+                 
+                       <a href="#">Edit</a>
+                       
+                        <a href="#">Delete</a>
+                       
                         <!-- NOTE: For the exercise, you can add these for all topics. In a real app,
                              these buttons would only be visible to the topic's author or the admin. -->
-                    <!-- End of actions container. -->
-                <!-- End of article. -->
-            
-            <!-- End of topics container. -->
-        <!-- End of list section. -->
+                     </div>
+                   
+                      </article>
+          
 
-    <!-- End of main. -->
+                <article>
+                    <h3><a href="topic-detail.html">How to Debug JavaScript in Browser DevTools?</a></h3>
+                    <footer>
+                        Posted by: Student Two on 2026-05-07
+                    </footer>
+                    <div>
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </article>
+
+                <article>
+                    <h3><a href="topic-detail.html">Best Practices for Semantic HTML</a></h3>
+                    <footer>
+                        Posted by: Student Three on 2026-05-06
+                    </footer>
+                    <div>
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </article>
+            
+             </div>
+           
+       </section>
+      
+
+   </main>
+   
 </body>
 </html>
+

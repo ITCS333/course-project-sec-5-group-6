@@ -13,6 +13,8 @@
 
 // --- Element Selections ---
 // TODO: Select the section for the resource list ('#resource-list-section').
+const resourceListSection = document.querySelector('#resource-list-section');
+
 
 // --- Functions ---
 
@@ -24,7 +26,23 @@
  * `details.html?id=${id}` so the detail page knows which resource to load.
  */
 function createResourceArticle(resource) {
-  // ... your implementation here ...
+  const article = document.createElement('article');
+
+  const heading = document.createElement('h2');
+  heading.textContent = resource.title ?? '';
+
+  const description = document.createElement('p');
+  description.textContent = resource.description ?? '';
+
+  const link = document.createElement('a');
+  link.href = `details.html?id=${resource.id}`;
+  link.textContent = 'View Resource & Discussion';
+
+  article.appendChild(heading);
+  article.appendChild(description);
+  article.appendChild(link);
+
+  return article;
 }
 
 /**
@@ -40,9 +58,24 @@ function createResourceArticle(resource) {
  *    - Append the returned <article> element to the list section.
  */
 async function loadResources() {
-  // ... your implementation here ...
+  try {
+    const resp = await fetch('./api/index.php');
+    const json = await resp.json();
+
+    if (!resourceListSection) return;
+    resourceListSection.innerHTML = '';
+
+    if (json && json.success && Array.isArray(json.data)) {
+      for (const resource of json.data) {
+        resourceListSection.appendChild(createResourceArticle(resource));
+      }
+    }
+  } catch {
+    // silently fail
+  }
 }
 
 // --- Initial Page Load ---
 // Call the function to populate the page.
 loadResources();
+
