@@ -27,6 +27,8 @@ The website covers five functional areas, each assigned to one team member.
 | 4 | Assignments |202110602 |Shaima-AA |   
 | 5 | Discussion Board |202305811 |yhhhhhhhhhhhhhhhhh |
 
+Riplt Link : https://course-project-sec-5-group-6--aishaalbalushii.replit.app
+
 ---
 
 ## Task Descriptions
